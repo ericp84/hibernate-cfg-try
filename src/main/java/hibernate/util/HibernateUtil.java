@@ -8,7 +8,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
-import hibernate.model.Student;
+import hibernate.model.Personne;
 
 public class HibernateUtil {
 	private static SessionFactory sessionFactory;
@@ -20,7 +20,7 @@ public class HibernateUtil {
 				
 				Properties settings = new Properties();
 				settings.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
-				settings.put(Environment.URL, "jdbc:mysql://localhost:3306/hibernate_db?createDatabaseIfNotExist=true");
+				settings.put(Environment.URL, "jdbc:mysql://localhost:3306/Personne-webA?createDatabaseIfNotExist=true");
 				settings.put(Environment.USER, "root");
 				settings.put(Environment.PASS, "root");
 				settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
@@ -33,7 +33,7 @@ public class HibernateUtil {
 				
 				configuration.setProperties(settings);
 				
-				configuration.addAnnotatedClass(Student.class);
+				configuration.addAnnotatedClass(Personne.class);
 				
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(configuration.getProperties()).build();

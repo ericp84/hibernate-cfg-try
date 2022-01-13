@@ -2,31 +2,31 @@ package hibernate;
 
 import java.util.List;
 
-import hibernate.model.Student;
-import hibernate.dao.IStudentDao;
-import hibernate.dao.StudentDao;
+import hibernate.model.Personne;
+import hibernate.dao.IpersonneDao;
+import hibernate.dao.PersonneDao;
 
 public class App {
 	public static void main(String[] args) {
 		
-		IStudentDao studentDao = new StudentDao();
+		IpersonneDao personneDao = new PersonneDao();
 		
-		//test saveStudent
-		Student student = new Student(1,"eric", "paoli", "e@e.fr");
-		studentDao.saveStudent(student);
+		//test savePersonne
+		Personne personne = new Personne();
+		personneDao.savePersonne(personne);
 		
-		student.setFirstName("ericP");
-		studentDao.updateStudent(student);
+		personne.setFirstName("ericP");
+		personneDao.updatePersonne(personne);
 		
-		//test getStudentById
-		Student student2 = studentDao.getStudentById(student.getId());
+		//test getPersonneById
+		Personne personne2 = personneDao.getPersonneById(personne.getId());
 		
-		//test getAllStudents
-		List<Student> students = studentDao.getAllStudents();
-		students.forEach(student1 -> System.out.println(student1.getId()));
+		//test getAllPersonnes
+		List<Personne> personnes = personneDao.getAllpersonnes();
+		personnes.forEach(personne1 -> System.out.println(personne1.getId()));
 		
-		//test deleteStudent
-		studentDao.deleteStudent(student.getId());
+		//test deletePersonne
+		personneDao.deletePersonne(personne.getId());
 	}
 
 }

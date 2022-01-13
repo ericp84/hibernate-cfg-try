@@ -1,34 +1,31 @@
 package hibernate.dao;
 
-
-
-
-
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import hibernate.model.Student;
+import hibernate.model.Personne;
 import hibernate.util.HibernateUtil;
 
-public class StudentDao implements IStudentDao {
+public class PersonneDao implements IpersonneDao {
 	
-	//saveStudent
-	//get all students
-	//get student by id
-	//update student
-	//delete student
+	//savePersonne
+	//get all Personne
+	//get personne by id
+	//update Personne
+	//delete Personne
+	
 	
 	@Override
-	public void saveStudent(Student student) {
+	public void savePersonne(Personne personne) {
 		Transaction transaction = null;
 		try(Session session = HibernateUtil.getSessionFactory().openSession()) {
 			//start the transaction
 			transaction = session.beginTransaction();
 			
 			//save student object
-			session.save(student);
+			session.save(personne);
 			
 			//commit the transaction
 			transaction.commit();
@@ -40,14 +37,14 @@ public class StudentDao implements IStudentDao {
 	}
 	//
 	@Override
-	public void updateStudent(Student student) {
+	public void updatePersonne(Personne personne) {
 		Transaction transaction = null;
 		try(Session session = HibernateUtil.getSessionFactory().openSession()) {
 			//start the transaction
 			transaction = session.beginTransaction();
 			
 			//save student object
-			session.saveOrUpdate(student);
+			session.saveOrUpdate(personne);
 			
 			//commit the transaction
 			transaction.commit();
@@ -59,15 +56,15 @@ public class StudentDao implements IStudentDao {
 	}
 	//
 	@Override
-	public Student getStudentById(long id) {
+	public Personne getPersonneById(long id) {
 		Transaction transaction = null;
-		Student student = null;
+		Personne personne = null;
 		try(Session session = HibernateUtil.getSessionFactory().openSession()) {
 			//start the transaction
 			transaction = session.beginTransaction();
 			
 			//get student object
-			student = session.get(Student.class, id);
+			personne = session.get(Personne.class, id);
 					
 			//commit the transaction
 			transaction.commit();
@@ -76,20 +73,20 @@ public class StudentDao implements IStudentDao {
 				transaction.rollback();
 			}
 		}
-		return student;
+		return personne;
 	}
 	//
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Student> getAllStudents() {
+	public List<Personne> getAllpersonnes() {
 		Transaction transaction = null;
-		List<Student> students = null;
+		List<Personne> students = null;
 		try(Session session = HibernateUtil.getSessionFactory().openSession()) {
 			//start the transaction
 			transaction = session.beginTransaction();
 			
-			//get student object
-			students = session.createQuery("from Student").list();
+			//get personne object
+			students = session.createQuery("from Personne").list();
 			
 			//commit the transaction
 			transaction.commit();
@@ -102,15 +99,15 @@ public class StudentDao implements IStudentDao {
 	}
 	//
 	@Override
-	public Student deleteStudent(long id) {
+	public Personne deletePersonne(long id) {
 		Transaction transaction = null;
-		Student student = null;
+		Personne personne = null;
 		try(Session session = HibernateUtil.getSessionFactory().openSession()) {
 			//start the transaction
 			transaction = session.beginTransaction();
-			student = session.get(Student.class, id);
-			//delete student object
-			session.delete(student);
+			personne = session.get(Personne.class, id);
+			//delete personne object
+			session.delete(personne);
 			
 			//commit the transaction
 			transaction.commit();
@@ -119,7 +116,7 @@ public class StudentDao implements IStudentDao {
 				transaction.rollback();
 			}
 		}
-		return student;
+		return personne;
 	}
 
 }
